@@ -1,0 +1,57 @@
+create database multiteca;
+use multiteca;
+
+create table obras(
+cod_barras integer unsigned primary key auto_increment,
+titulo varchar(30),
+autor varchar(30),
+añoEdicion integer unsigned);
+
+create table libros(
+cod_barras integer unsigned primary key,
+editorial varchar(30),
+nPaginas integer unsigned);
+
+create table peliculas(
+cod_barras integer unsigned primary key,
+productora varchar(30));
+
+create table discos(
+cod_barras integer unsigned primary key,
+discografica varchar(30),
+nCanciones integer unsigned);
+
+create table artistas(
+nombre varchar(30) primary key,
+añoNacimiento varchar(30));
+
+
+
+alter table libros
+add constraint fk_libros
+foreign key (cod_barras)
+references obras(cod_barras)
+on delete cascade
+on update cascade;
+
+alter table peliculas
+add constraint fk_peliculas
+foreign key (cod_barras)
+references obras(cod_barras)
+on delete cascade
+on update cascade;
+
+alter table discos
+add constraint fk_discos
+foreign key (cod_barras)
+references obras(cod_barras)
+on delete cascade
+on update cascade;
+
+alter table obras
+add constraint fk_artistas
+foreign key (autor)
+references artistas(nombre)
+on delete cascade
+on update cascade;
+
