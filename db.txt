@@ -55,3 +55,6 @@ references artistas(nombre)
 on delete cascade
 on update cascade;
 
+alter table obras
+add column tipo enum('libro','pelicula','disco');
+

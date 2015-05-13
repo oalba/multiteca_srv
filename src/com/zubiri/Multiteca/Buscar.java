@@ -43,7 +43,7 @@ public class Buscar extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection cone = DriverManager.getConnection("jdbc:mysql://localhost/multiteca","root","zubiri");
 			
-			Statement stmt = cone.createStatement();
+			
 			
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -51,38 +51,41 @@ public class Buscar extends HttpServlet {
 		out.println("<html>");
 		out.println("<head><title></title></head>");
 		out.println("<body>");
-		String st = request.getParameter("selecTipo");
+		//String st = request.getParameter("selecTipo");
 		String cb = request.getParameter("codigoBarras");
-		if (st == "disco") {
-			ResultSet rsl = stmt.executeQuery("SELECT * FROM libro WHERE cod_barras = "+cb);
+		//if (st == "disco") {
+		Statement stmtl = cone.createStatement();
+		ResultSet rsl = stmtl.executeQuery("SELECT * FROM obras,libros WHERE obras.cod_barras = "+cb+" and obras.cod_barras=libros.cod_barras");
 			while (rsl.next()) {
-				out.println("Código de barras: " + rsl.getInt("cod_barras") + "<br>");
-				out.println("Título: " + rsl.getString("titulo") + "<br>");
-				out.println("Autor: " + rsl.getString("autor") + "<br>");
-				out.println("Año de edición: " + rsl.getInt("añoEdicion") + "<br>");
-				out.println("Editorial: " + rsl.getString("editorial") + "<br>");
-				out.println("Número de páginas: " + rsl.getInt("numPaginas") + "<hr>");
+				out.println("Código de barras: " + rsl.getInt("obras.cod_barras") + "<br>");
+				out.println("Título: " + rsl.getString("obras.titulo") + "<br>");
+				out.println("Autor: " + rsl.getString("obras.autor") + "<br>");
+				out.println("Año de edición: " + rsl.getInt("obras.añoEdicion") + "<br>");
+				out.println("Editorial: " + rsl.getString("libros.editorial") + "<br>");
+				out.println("Número de páginas: " + rsl.getInt("libros.nPaginas") + "<hr>");
 		    }
-		} else if (st == "pelicula") {
-			ResultSet rsp = stmt.executeQuery("SELECT * FROM pelicula WHERE cod_barras = "+cb);
+		//} else if (st == "pelicula") {
+			Statement stmtp = cone.createStatement();
+			ResultSet rsp = stmtp.executeQuery("SELECT * FROM obras,peliculas WHERE obras.cod_barras = "+cb+" and obras.cod_barras=peliculas.cod_barras");
 			while (rsp.next()) {
-				out.println("Código de barras: " + rsp.getInt("cod_barras") + "<br>");
-				out.println("Título: " + rsp.getString("titulo") + "<br>");
-				out.println("Autor: " + rsp.getString("autor") + "<br>");
-				out.println("Año de edición: " + rsp.getInt("añoEdicion") + "<br>");
-				out.println("Productora: " + rsp.getString("productora") + "<hr>");
+				out.println("Código de barras: " + rsp.getInt("obras.cod_barras") + "<br>");
+				out.println("Título: " + rsp.getString("obras.titulo") + "<br>");
+				out.println("Autor: " + rsp.getString("obras.autor") + "<br>");
+				out.println("Año de edición: " + rsp.getInt("obras.añoEdicion") + "<br>");
+				out.println("Productora: " + rsp.getString("peliculas.productora") + "<hr>");
 		    }
-		} else {
-			ResultSet rsd = stmt.executeQuery("SELECT * FROM disco WHERE cod_barras = "+cb);
+		//} else {
+			Statement stmtd = cone.createStatement();
+			ResultSet rsd = stmtd.executeQuery("SELECT * FROM obras,discos WHERE obras.cod_barras = "+cb+" and obras.cod_barras=discos.cod_barras");
 			while (rsd.next()) {
-				out.println("Código de barras: " + rsd.getInt("cod_barras") + "<br>");
-				out.println("Título: " + rsd.getString("titulo") + "<br>");
-				out.println("Autor: " + rsd.getString("autor") + "<br>");
-				out.println("Año de edición: " + rsd.getInt("añoEdicion") + "<br>");
-				out.println("Discográfica: " + rsd.getString("discografica") + "<br>");
-				out.println("Número de canciones: " + rsd.getInt("nCanciones") + "<hr>");
+				out.println("Código de barras: " + rsd.getInt("obras.cod_barras") + "<br>");
+				out.println("Título: " + rsd.getString("obras.titulo") + "<br>");
+				out.println("Autor: " + rsd.getString("obras.autor") + "<br>");
+				out.println("Año de edición: " + rsd.getInt("obras.añoEdicion") + "<br>");
+				out.println("Discográfica: " + rsd.getString("discos.discografica") + "<br>");
+				out.println("Número de canciones: " + rsd.getInt("discos.nCanciones") + "<hr>");
 		    }
-		}
+		//}
 		out.println("<br/><a href='index.html'><input type='button' value='Volver'></a>");
 		out.println("</body></html>");
 		cone.close();

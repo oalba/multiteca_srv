@@ -25,12 +25,7 @@ create table artistas(
 nombre varchar(30) primary key,
 añoNacimiento varchar(30));
 
-alter table artistas
-add constraint fk_artistas
-foreign key (nombre)
-references obras(autor)
-on delete cascade
-on update cascade;
+
 
 alter table libros
 add constraint fk_libros
@@ -50,6 +45,13 @@ alter table discos
 add constraint fk_discos
 foreign key (cod_barras)
 references obras(cod_barras)
+on delete cascade
+on update cascade;
+
+alter table obras
+add constraint fk_artistas
+foreign key (autor)
+references artistas(nombre)
 on delete cascade
 on update cascade;
 

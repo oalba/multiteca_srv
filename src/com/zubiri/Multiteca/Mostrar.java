@@ -43,13 +43,15 @@ public class Mostrar extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection cone = DriverManager.getConnection("jdbc:mysql://localhost/multiteca","root","zubiri");
 			
-			Statement stmtl = cone.createStatement();
+			Statement stmto = cone.createStatement();
+			/*Statement stmtl = cone.createStatement();
 			Statement stmtp = cone.createStatement();
-			Statement stmtd = cone.createStatement();
+			Statement stmtd = cone.createStatement();*/
 			
-		    ResultSet rsl = stmtl.executeQuery("SELECT * FROM libro");
-		    ResultSet rsp = stmtp.executeQuery("SELECT * FROM pelicula");
-		    ResultSet rsd = stmtd.executeQuery("SELECT * FROM disco");
+			ResultSet rso = stmto.executeQuery("SELECT * FROM obras");
+			/*ResultSet rsl = stmtl.executeQuery("SELECT * FROM libros");
+		    ResultSet rsp = stmtp.executeQuery("SELECT * FROM peliculas");
+		    ResultSet rsd = stmtd.executeQuery("SELECT * FROM discos");*/
 		    
 		    
 		
@@ -60,28 +62,75 @@ public class Mostrar extends HttpServlet {
 		out.println("<head><title></title></head>");
 		out.println("<body>");
 		out.println("<h3>Libros</h3>");
-		while (rsl.next()) {
+		while (rso.next()) {
+			//String tipo = rso.getString("tipo");
+			//if (tipo=="libro") {
+			Integer cb = rso.getInt("cod_barras");
+			Statement stmtl = cone.createStatement();
+			ResultSet rsl = stmtl.executeQuery("SELECT * FROM libros WHERE cod_barras="+cb);
+			while (rsl.next()) {
 			//Statement stmtla = cone.createStatement();
 			//String au = rsl.getString("autor");
+			out.println("<hr>");
 			//ResultSet rsa = stmtla.executeQuery("SELECT añoNacimiento FROM artista WHERE nombre='"+au+"'");
-			out.println("Código de barras: " + rsl.getInt("cod_barras") + "<br>");
-			out.println("Título: " + rsl.getString("titulo") + "<br>");
-			//out.println("Autor: " + rsa.getInt("añoNacimiento") + "<br>");
-			out.println("Autor: " + rsl.getString("autor") + "<br>");
-			out.println("Año de edición: " + rsl.getInt("añoEdicion") + "<br>");
+			out.println("Código de barras: " + cb + "<br>");
+			out.println("Título: " + rso.getString("titulo") + "<br>");
+				//out.println("Autor: " + rsa.getInt("añoNacimiento") + "<br>");
+			out.println("Autor: " + rso.getString("autor") + "<br>");
+			out.println("Año de edición: " + rso.getInt("añoEdicion") + "<br>");
 			out.println("Editorial: " + rsl.getString("editorial") + "<br>");
-			out.println("Número de páginas: " + rsl.getInt("numPaginas") + "<hr>");
+			out.println("Número de páginas: " + rsl.getInt("nPaginas") + "<hr>");
+			}
+			//}
 	    }
 		out.println("<h3>Películas</h3>");
-		while (rsp.next()) {
+		while (rso.next()) {
+			//if (rso.getString("tipo")=="pelicula") {
+			Integer cb = rso.getInt("cod_barras");
+			Statement stmtp = cone.createStatement();
+			ResultSet rsp = stmtp.executeQuery("SELECT * FROM peliculas WHERE cod_barras="+cb);
+			while (rsp.next()) {
+			//Statement stmtla = cone.createStatement();
+			//String au = rsl.getString("autor");
+			out.println("<hr>");
+			//ResultSet rsa = stmtla.executeQuery("SELECT añoNacimiento FROM artista WHERE nombre='"+au+"'");
+			out.println("Código de barras: " + cb + "<br>");
+			out.println("Título: " + rso.getString("titulo") + "<br>");
+				//out.println("Autor: " + rsa.getInt("añoNacimiento") + "<br>");
+			out.println("Autor: " + rso.getString("autor") + "<br>");
+			out.println("Año de edición: " + rso.getInt("añoEdicion") + "<br>");
+			out.println("Productora: " + rsp.getString("productora") + "<hr>");
+			}
+			//}
+	    }
+		/*while (rsp.next()) {
 			out.println("Código de barras: " + rsp.getInt("cod_barras") + "<br>");
 			out.println("Título: " + rsl.getString("titulo") + "<br>");
 			out.println("Autor: " + rsl.getString("autor") + "<br>");
 			out.println("Año de edición: " + rsl.getInt("añoEdicion") + "<br>");
 			out.println("Productora: " + rsl.getString("productora") + "<hr>");
-	    }
+	    }*/
 		out.println("<h3>Discos</h3>");
-		while (rsd.next()) {
+		while (rso.next()) {
+			//if (rso.getString("tipo")=="disco") {
+			Integer cb = rso.getInt("cod_barras");
+			Statement stmtd = cone.createStatement();
+			ResultSet rsd = stmtd.executeQuery("SELECT * FROM discos WHERE cod_barras="+cb);
+			while (rsd.next()) {
+			//Statement stmtla = cone.createStatement();
+			//String au = rsl.getString("autor");
+			out.println("<hr>");
+			//ResultSet rsa = stmtla.executeQuery("SELECT añoNacimiento FROM artista WHERE nombre='"+au+"'");
+			out.println("Código de barras: " + cb + "<br>");
+			out.println("Título: " + rso.getString("titulo") + "<br>");
+				//out.println("Autor: " + rsa.getInt("añoNacimiento") + "<br>");
+			out.println("Autor: " + rso.getString("autor") + "<br>");
+			out.println("Discográfica: " + rsd.getString("discografica") + "<br>");
+			out.println("Número de canciones: " + rsd.getInt("nCanciones") + "<hr>");
+			}
+			//}
+	    }
+		/*while (rsd.next()) {
 			out.println("Código de barras: " + rsd.getInt("cod_barras") + "<br>");
 			out.println("Título: " + rsl.getString("titulo") + "<br>");
 			out.println("Autor: " + rsl.getString("autor") + "<br>");
@@ -89,7 +138,7 @@ public class Mostrar extends HttpServlet {
 			out.println("Discográfica: " + rsl.getString("discografica") + "<br>");
 			out.println("Número de canciones: " + rsl.getInt("nCanciones") + "<hr>");
 	    }
-		
+		*/
 		out.println("<br/><a href='index.html'><input type='button' value='Volver'></a>");
 		out.println("</body></html>");
 		cone.close();
