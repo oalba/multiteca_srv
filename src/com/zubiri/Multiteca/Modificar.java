@@ -47,6 +47,7 @@ public class Modificar extends HttpServlet {
 		    //String cb = "1";
 		    ResultSet rs = stmt.executeQuery("SELECT * FROM obras WHERE cod_barras = '"+cb+"'");
 		    
+		    
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
@@ -60,29 +61,44 @@ public class Modificar extends HttpServlet {
 			out.print("Código de barras: <input type='text' name='codigoBarras' id='cb' value='"+cb+"' maxlength='7' disabled><br>");
 			out.print("Título: <input type='text' name='titulo' value='"+rs.getString("titulo")+"'><br>");
 			out.print("Autor: <input type='text' name='autor' value='"+rs.getString("autor")+"'><br>");
-			out.println("Año de edición: <input type='number' name='autor' value='"+rs.getInt("añoEdicion")+"'><br>");
+			out.println("Año de edición: <input type='number' name='añoEdicion' value='"+rs.getInt("añoEdicion")+"'><br>");
+			
+			//out.println(rs.getString("tipo"));
 			out.print("Tipo: <select name='tipo'>");
-			//String tipo = rs.getString("tipo");
-			String tipo = "libro";
-			out.println(rs.getString("tipo"));
-			if (tipo=="libro") {
+			String tipo = rs.getString("tipo");
+			String libro = "libro";
+			String peli = "pelicula";
+			String disco = "disco";
+			//String tipo = "libro";
+			
+			//if (tipo != "pelicula" && tipo != "disco") {
+			if (tipo.equals(libro)) {
+				
 				out.print("<option value='libro' selected>Libro</option><option value='pelicula'>Pelicula</option><option value='disco'>Disco</option></select><br>");
 				Statement stmtl = cone.createStatement();
 				ResultSet rsl = stmtl.executeQuery("SELECT * FROM libros WHERE cod_barras = '"+cb+"'");
-				out.println("Editorial: <input type='text' name='editorial' value='"+rs.getString("editorial")+"'><br>");
-				out.println("Número de páginas: " + rsl.getInt("nPaginas") + "<hr>");
+				while (rsl.next()){
+					out.println("Editorial: <input type='text' name='editorial' value='"+rsl.getString("editorial")+"'><br>");
+					out.println("Número de páginas: <input type='number' name='nPaginas' value='"+rsl.getInt("nPaginas")+"'><hr>");
+				}
 				
-			} else if (rs.getString("tipo")=="pelicula"){
+			//} else if (tipo != "libro" && tipo != "disco"){
+			} else if (tipo.equals(peli)){
 				out.print("<option value='libro'>Libro</option><option value='pelicula' selected>Pelicula</option><option value='disco'>Disco</option></select><br>");
 				Statement stmtp = cone.createStatement();
 				ResultSet rsp = stmtp.executeQuery("SELECT * FROM peliculas WHERE cod_barras = '"+cb+"'");
-				out.println("Productora: " + rsp.getString("productora") + "<hr>");
-			} else if (rs.getString("tipo")=="disco"){
+				while (rsp.next()){
+					out.println("Productora: <input type='text' name='productora' value='"+rsp.getString("productora")+"'><hr>");
+				}
+			//} else if (tipo != "pelicula" && tipo != "libro"){
+			} else if (tipo.equals(disco)){
 				out.print("<option value='libro'>Libro</option><option value='pelicula'>Pelicula</option><option value='disco' selected>Disco</option></select><br>");
 				Statement stmtd = cone.createStatement();
 				ResultSet rsd = stmtd.executeQuery("SELECT * FROM discos WHERE cod_barras = '"+cb+"'");
-				out.println("Discográfica: " + rsd.getString("discogracica") + "<br>");
-				out.println("Número de canciones: " + rsd.getInt("nCanciones") + "<hr>");
+				while (rsd.next()){
+					out.println("Discográfica: <input type='text' name='discografica' value='"+rsd.getString("discografica")+"'><br>");
+					out.println("Número de canciones: <input type='number' name='nCanciones' value='"+rsd.getInt("nCanciones")+"'><hr>");
+				}
 			}
 						
 			out.print("<input type='submit' value='Modificar'>");
