@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Multiteca</title>
+	</head>
+	<body>
+<script type="text/javascript">
+function controlCod_barras(){
+	var cod_Barras = document.getElementById('codigo_Barras');
+	var len = cod_Barras.value.length;
+	if (len != 7) {
+	//if (len < 7 || len > 7) {
+		window.alert("Codigo de barras NO VÁLIDO\nEl codigo de barras debe contener 7 numeros");
+		//history.go(-1);
+		return false;
+	} else {
+		var numeros = matricula.value.substr(0,6);
+		//if (numeros >= "0000" && numeros <= "9999"){
+		if (!isNaN(numeros)){
+			//window.alert("Numeros: " + numeros + " Letras: " + letras);
+			return true;
+		} else {
+			window.alert("Codigo de barras NO VÁLIDO\nTodos los caracteres deben ser numeros");
+			//history.go(-1);
+			return false;
+		}
+	}	
+}
+
+function seguro(){
+	var cod_Barras = document.getElementById('codigo_Barras');
+	confirmar=confirm("¿Seguro que desea eliminar el producto con el codigo de barras: " + cod_Barras + "?"); 
+	//if (!confirm("¿Seguro que desea eliminar el producto con la cod_Barras: "+cod_Barras+"?") {
+	if (confirmar) {
+		// si pulsamos en aceptar
+		alert('El producto se eliminará.');
+		return true;
+	}else{ 
+		return false;
+		// si pulsamos en cancelar
+		//window.location.href="./index.html";
+		//alert('Eliminación cancelada.');
+		//window.open("./index.html");
+		//history.go(-1);
+	}			
+}
+	
+function mostrarForm(){
+	
+		var seleccion = document.getElementById(selecTipo);
+	
+		if ( seleccion = "disco"){
+		
+			document.getElementById('disco1').style.display = 'block';
+			document.getElementById('peli1').style.display = 'none';
+			document.getElementById('libro1').style.display = 'none';}
+
+		else if (seleccion = "peli") {
+
+		   document.getElementById('disco1').style.display = 'none';
+		   document.getElementById('peli1').style.display = 'block';
+			document.getElementById('libro1').style.display = 'none';}
+	   
+		else if (seleccion = "libro") {
+	    	
+			document.getElementById('disco1').style.display = 'none';
+			document.getElementById('peli1').style.display = 'none';
+	    	document.getElementById('libro1').style.display = 'block';}
+}
+</script>
+		<p><font color="blue"><u><h1>Multiteca</h1></u></font></p>
+		<!-- <hr> -->
+		<fieldset>
+			<legend><h2>Mostrar multiteca</h2></legend>
+		<form method="POST" action="mostrar.jr">
+			<input type="submit" value="Mostrar">
+		</form>
+		</fieldset>
+		<!-- <hr> -->
+		<fieldset>
+			<legend><h2>Buscar en multiteca</h2></legend>
+			<div class="divspoiler">
+			<input type="button" value="Búsqueda en multiteca" onclick="
+			if (this.parentNode.nextSibling.childNodes[0].style.display != '') { 
+				this.parentNode.nextSibling.childNodes[0].style.display = ''; 
+				this.value = 'Ocultar búsqueda'; 
+			} else { 
+				this.parentNode.nextSibling.childNodes[0].style.display = 'none'; 
+				this.value = 'Búsqueda en multiteca'; 
+			}
+		">
+		</div><div><div class="spoiler" style="display: none;">
+		<!-- <form name="buscar_multiteca" method="post" onsubmit="return controlCod_barras()" action="buscar.jr"> -->
+		<form name="buscar_multiteca" method="post" action="buscar.jr">
+			<!-- <input name="gestion" hidden="true" type="text"  value="buscar_matricula"/> <br> -->
+			Codigo de barras:<input type="text" name="codigoBarras" id="codigo_Barras" value="" maxlength="7">
+			<!-- <br/>Tipo:<select name="seleccion" id="selecTipo">
+					<option>Todo</option>
+					<option>Disco</option>
+					<option>Pelicula</option>
+					<option>Libro</option>
+				</select><br/> -->
+			<input type="submit" id="submit" value="Buscar">
+		</form>
+	</div></div>
+			<!-- <form method="POST" action="buscar.jr" onsubmit="return controlCod_barras()">
+				<input type="submit" value="Buscar" onclick="controlMatri()">
+			</form>-->
+		</fieldset>
+		<!-- <hr> -->
+			<fieldset>
+			<legend><h2>Añadir media</h2></legend>
+			<div class="divspoiler">
+			<input type="button" value="Añadir" onclick="
+			if (this.parentNode.nextSibling.childNodes[0].style.display != '') { 
+				this.parentNode.nextSibling.childNodes[0].style.display = ''; 
+				this.value = 'Ocultar'; 
+			} else { 
+				this.parentNode.nextSibling.childNodes[0].style.display = 'none'; 
+				this.value = 'Añadir en multiteca'; 
+			}
+		">
+		</div><div><div class="spoiler" style="display: none;">
+		<form name="añadir_multiteca" method="post" action="anadir.jr"> 
+			<input name="gestion" hidden="true" type="text"  value="añadir_media"/> <br>
+			Titulo:<input type="text" name="titulo" id="titulo" value=""><br/>
+			Año de edicion:<input type="text" name="añoEdicion" id="añoEdicion" value="" maxlenght="4">		
+			<br/>Tipo:<select name="selecTipo" id="selecTipo">
+					<option value="disco">Disco</option>
+					<option value="peli">Pelicula</option>
+					<option value="libro">Libro</option>
+				</select><input type="button" id="Elegir" value="Elegir" onclick="mostrarForm()"><br/>
+			<div id="disco1">
+			Discografica:<input type="text" name="discografica" id="discografica" value=""><br/>
+			Numero de Canciones:<input type="text" name="numCanciones" id="numCanciones" value="" maxlenght="3">			
+			</div>
+			<div id="peli1">
+			Productora:<input type="text" name="productora" id="productora" value=""><br/>
+			Duracion:<input type="text" name="duracion" id="duracion" value="" maxlenght="3">
+			
+			</div>
+			<div id="libro1">
+			Editor:<input type="text" name="editor" id="editor" value=""><br/>
+			Numero de Paginas:<input type="text" name="numPaginas" id="numPaginas" value="">			
+			
+			</div>
+			<input type="submit" id="submit" value="Buscar">
+		</form>
+	</div></div>
+			<form method="POST" action="buscar.jr" onsubmit="return controlCod_barras()">
+				<!-- <input type="submit" value="Buscar" onclick="controlMatri()">-->
+			</form>
+		</fieldset>
+		<fieldset>
+			<legend><h2>Eliminar media</h2></legend>
+				<form method="POST" action="eliminar.jr" onclick="controlCod_barras()" onsubmit="return seguro()">
+					Codigo de barras:<input type="text" name="codigoBarras" id="codigo_Barras" value="" maxlength="7"/><input type="submit" name="Eliminar" value="Eliminar"/>
+				</form>
+		</fieldset>
+		<fieldset>
+			<legend><h2>Modificar media</h2></legend>
+				<!-- <form method="POST" action="modificar.jr" onsubmit="return controlMatri()"> -->
+				<!-- <form method="POST" action="modificar.jr" onclick="controlCod_barras()"> -->
+				<form method="POST" action="modificar.jr">
+					Codigo de barras:<input type="text" name="codigoBarras" id="codigo_Barras" value="" maxlength="7"/><input type="submit" name="Modificar" value="Modificar"/>
+				</form>
+		</fieldset>
+	</body>
+</html>

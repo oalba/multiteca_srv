@@ -61,11 +61,13 @@ public class Mostrar extends HttpServlet {
 		out.println("<html>");
 		out.println("<head><title></title></head>");
 		out.println("<body>");
-		out.println("<h3>Libros</h3>");
+		
 		while (rso.next()) {
+			Integer cb = rso.getInt("cod_barras");
 			//String tipo = rso.getString("tipo");
 			//if (tipo=="libro") {
-			Integer cb = rso.getInt("cod_barras");
+			
+			//out.println("<h3>Libros</h3>");
 			Statement stmtl = cone.createStatement();
 			ResultSet rsl = stmtl.executeQuery("SELECT * FROM libros WHERE cod_barras="+cb);
 			while (rsl.next()) {
@@ -73,6 +75,7 @@ public class Mostrar extends HttpServlet {
 			//String au = rsl.getString("autor");
 			out.println("<hr>");
 			//ResultSet rsa = stmtla.executeQuery("SELECT añoNacimiento FROM artista WHERE nombre='"+au+"'");
+			out.println("TIPO: " + rso.getString("tipo") + "<br>");
 			out.println("Código de barras: " + cb + "<br>");
 			out.println("Título: " + rso.getString("titulo") + "<br>");
 				//out.println("Autor: " + rsa.getInt("añoNacimiento") + "<br>");
@@ -81,10 +84,44 @@ public class Mostrar extends HttpServlet {
 			out.println("Editorial: " + rsl.getString("editorial") + "<br>");
 			out.println("Número de páginas: " + rsl.getInt("nPaginas") + "<hr>");
 			}
+			
+			//out.println("<h3>Películas</h3>");
+			Statement stmtp = cone.createStatement();
+			ResultSet rsp = stmtp.executeQuery("SELECT * FROM peliculas WHERE cod_barras="+cb);
+			while (rsp.next()) {
+			//Statement stmtla = cone.createStatement();
+			//String au = rsl.getString("autor");
+			out.println("<hr>");
+			//ResultSet rsa = stmtla.executeQuery("SELECT añoNacimiento FROM artista WHERE nombre='"+au+"'");
+			out.println("TIPO: " + rso.getString("tipo") + "<br>");
+			out.println("Código de barras: " + cb + "<br>");
+			out.println("Título: " + rso.getString("titulo") + "<br>");
+				//out.println("Autor: " + rsa.getInt("añoNacimiento") + "<br>");
+			out.println("Autor: " + rso.getString("autor") + "<br>");
+			out.println("Año de edición: " + rso.getInt("añoEdicion") + "<br>");
+			out.println("Productora: " + rsp.getString("productora") + "<hr>");
+			}
+			
+			//out.println("<h3>Discos</h3>");
+			Statement stmtd = cone.createStatement();
+			ResultSet rsd = stmtd.executeQuery("SELECT * FROM discos WHERE cod_barras="+cb);
+			while (rsd.next()) {
+			//Statement stmtla = cone.createStatement();
+			//String au = rsl.getString("autor");
+			out.println("<hr>");
+			//ResultSet rsa = stmtla.executeQuery("SELECT añoNacimiento FROM artista WHERE nombre='"+au+"'");
+			out.println("TIPO: " + rso.getString("tipo") + "<br>");
+			out.println("Código de barras: " + cb + "<br>");
+			out.println("Título: " + rso.getString("titulo") + "<br>");
+				//out.println("Autor: " + rsa.getInt("añoNacimiento") + "<br>");
+			out.println("Autor: " + rso.getString("autor") + "<br>");
+			out.println("Discográfica: " + rsd.getString("discografica") + "<br>");
+			out.println("Número de canciones: " + rsd.getInt("nCanciones") + "<hr>");
+			}
 			//}
 	    }
-		out.println("<h3>Películas</h3>");
-		while (rso.next()) {
+		
+		/*while (rso.next()) {
 			//if (rso.getString("tipo")=="pelicula") {
 			Integer cb = rso.getInt("cod_barras");
 			Statement stmtp = cone.createStatement();
@@ -102,7 +139,7 @@ public class Mostrar extends HttpServlet {
 			out.println("Productora: " + rsp.getString("productora") + "<hr>");
 			}
 			//}
-	    }
+	    }*/
 		/*while (rsp.next()) {
 			out.println("Código de barras: " + rsp.getInt("cod_barras") + "<br>");
 			out.println("Título: " + rsl.getString("titulo") + "<br>");
@@ -110,8 +147,8 @@ public class Mostrar extends HttpServlet {
 			out.println("Año de edición: " + rsl.getInt("añoEdicion") + "<br>");
 			out.println("Productora: " + rsl.getString("productora") + "<hr>");
 	    }*/
-		out.println("<h3>Discos</h3>");
-		while (rso.next()) {
+		
+		/*while (rso.next()) {
 			//if (rso.getString("tipo")=="disco") {
 			Integer cb = rso.getInt("cod_barras");
 			Statement stmtd = cone.createStatement();
@@ -129,7 +166,7 @@ public class Mostrar extends HttpServlet {
 			out.println("Número de canciones: " + rsd.getInt("nCanciones") + "<hr>");
 			}
 			//}
-	    }
+	    }*/
 		/*while (rsd.next()) {
 			out.println("Código de barras: " + rsd.getInt("cod_barras") + "<br>");
 			out.println("Título: " + rsl.getString("titulo") + "<br>");

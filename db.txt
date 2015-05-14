@@ -2,10 +2,11 @@ create database multiteca;
 use multiteca;
 
 create table obras(
-cod_barras integer unsigned primary key auto_increment,
+cod_barras integer unsigned primary key,
 titulo varchar(30),
 autor varchar(30),
-añoEdicion integer unsigned);
+añoEdicion integer unsigned,
+tipo enum('libro','pelicula','disco'));
 
 create table libros(
 cod_barras integer unsigned primary key,
@@ -55,6 +56,6 @@ references artistas(nombre)
 on delete cascade
 on update cascade;
 
-alter table obras
-add column tipo enum('libro','pelicula','disco');
+//alter table obras
+//add column tipo enum('libro','pelicula','disco');
 

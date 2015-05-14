@@ -29,4 +29,14 @@
     <servlet-name>Buscar</servlet-name>
     <url-pattern>/buscar.jr</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Modificar</display-name>
+    <servlet-name>Modificar</servlet-name>
+    <servlet-class>com.zubiri.Multiteca.Modificar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Modificar</servlet-name>
+    <url-pattern>/modificar.jr</url-pattern>
+  </servlet-mapping>
 </web-app>
