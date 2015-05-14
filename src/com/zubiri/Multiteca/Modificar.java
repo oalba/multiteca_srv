@@ -58,12 +58,14 @@ public class Modificar extends HttpServlet {
 		while (rs.next()) {
 		out.print("<fieldset><legend><h2>Modificar obra</h2></legend>");
 		out.print("<form method='POST' action='modificarok.jr'>");
-			out.print("Código de barras: <input type='text' name='codigoBarras' id='cb' value='"+cb+"' maxlength='7' disabled><br>");
+			//out.print("Código de barras: <input type='text' name='codigoBarras' id='cb' value='"+cb+"' maxlength='7' disabled><br>");
+			out.print("Código de barras: <input type='text' name='codigoBarras' id='cb' value='"+cb+"' maxlength='7'><br>");
 			out.print("Título: <input type='text' name='titulo' value='"+rs.getString("titulo")+"'><br>");
 			out.print("Autor: <input type='text' name='autor' value='"+rs.getString("autor")+"'><br>");
-			out.println("Año de edición: <input type='number' name='añoEdicion' value='"+rs.getInt("añoEdicion")+"'><br>");
+			out.print("Año de edición: <input type='number' name='anoEdicion' value='"+rs.getInt("añoEdicion")+"'><br>");
 			
 			//out.println(rs.getString("tipo"));
+			//out.print("Tipo: <select name='tipo' disabled>");
 			out.print("Tipo: <select name='tipo'>");
 			String tipo = rs.getString("tipo");
 			String libro = "libro";

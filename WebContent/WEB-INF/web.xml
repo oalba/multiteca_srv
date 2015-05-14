@@ -39,4 +39,14 @@
     <servlet-name>Modificar</servlet-name>
     <url-pattern>/modificar.jr</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModificarOk</display-name>
+    <servlet-name>ModificarOk</servlet-name>
+    <servlet-class>com.zubiri.Multiteca.ModificarOk</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModificarOk</servlet-name>
+    <url-pattern>/modificarok.jr</url-pattern>
+  </servlet-mapping>
 </web-app>
