@@ -28,22 +28,24 @@
 	}	
 }*/
 function controlCod_barras(){
-	var cod_Barras = document.getElementById('codigo_Barras');
-	var numeros = matricula.value.substr(0,6);
+	var cod_Barras = document.getElementById('codigo_Barras').value;
+	//var numeros = matricula.value.substr(0,6);
 	//if (numeros >= "0000" && numeros <= "9999"){
-	if (!isNaN(cod_barras)){
-		//window.alert("Numeros: " + numeros + " Letras: " + letras);
-		return true;
-	} else {
+	if (isNaN(cod_barras)){
 		window.alert("Codigo de barras NO VÁLIDO\nTodos los caracteres deben ser numeros");
 		//history.go(-1);
 		return false;
+		
+	} else {
+		//window.alert("Numeros: " + numeros + " Letras: " + letras);
+		return true;
+		
 	}
 		
 }
 
 function seguro(){
-	var cod_Barras = document.getElementById('codigo_Barras');
+	var cod_Barras = document.getElementById('codigo_Barras').value;
 	confirmar=confirm("¿Seguro que desea eliminar el producto con el codigo de barras: " + cod_Barras + "?"); 
 	//if (!confirm("¿Seguro que desea eliminar el producto con la cod_Barras: "+cod_Barras+"?") {
 	if (confirmar) {
@@ -62,21 +64,21 @@ function seguro(){
 	
 function mostrarForm(){
 	
-		var seleccion = document.getElementById(selecTipo);
+		var seleccion = document.getElementById("selecTipo").value;
 	
-		if ( seleccion = "disco"){
+		if ( seleccion == "disco"){
 		
 			document.getElementById('disco1').style.display = 'block';
 			document.getElementById('peli1').style.display = 'none';
 			document.getElementById('libro1').style.display = 'none';}
 
-		else if (seleccion = "peli") {
+		else if (seleccion == "peli") {
 
 		   document.getElementById('disco1').style.display = 'none';
 		   document.getElementById('peli1').style.display = 'block';
 			document.getElementById('libro1').style.display = 'none';}
 	   
-		else if (seleccion = "libro") {
+		else if (seleccion == "libro") {
 	    	
 			document.getElementById('disco1').style.display = 'none';
 			document.getElementById('peli1').style.display = 'none';
@@ -85,12 +87,14 @@ function mostrarForm(){
 </script>
 		<p><font color="blue"><u><h1>Multiteca</h1></u></font></p>
 		<!-- <hr> -->
+		<!-- ---------------------------------------------------------------------------------------------------- -->
 		<fieldset>
 			<legend><h2>Mostrar multiteca</h2></legend>
 		<form method="POST" action="mostrar.jr">
 			<input type="submit" value="Mostrar">
 		</form>
 		</fieldset>
+		<!-- ---------------------------------------------------------------------------------------------------- -->
 		<!-- <hr> -->
 		<fieldset>
 			<legend><h2>Buscar en multiteca</h2></legend>
@@ -105,25 +109,16 @@ function mostrarForm(){
 			}
 		">
 		</div><div><div class="spoiler" style="display: none;">
-		<!-- <form name="buscar_multiteca" method="post" onsubmit="return controlCod_barras()" action="buscar.jr"> -->
-		<form name="buscar_multiteca" method="post" action="buscar.jr">
-			<!-- <input name="gestion" hidden="true" type="text"  value="buscar_matricula"/> <br> -->
+		<form name="buscar_multiteca" method="post" onsubmit="return controlCod_barras()" action="buscar.jr">
+			<!-- <form name="buscar_multiteca" method="post" action="buscar.jr"> -->
 			Codigo de barras:<input type="text" name="codigoBarras" id="codigo_Barras" value="" maxlength="7">
-			<!-- <br/>Tipo:<select name="seleccion" id="selecTipo">
-					<option>Todo</option>
-					<option>Disco</option>
-					<option>Pelicula</option>
-					<option>Libro</option>
-				</select><br/> -->
 			<input type="submit" id="submit" value="Buscar">
 		</form>
-	</div></div>
-			<!-- <form method="POST" action="buscar.jr" onsubmit="return controlCod_barras()">
-				<input type="submit" value="Buscar" onclick="controlMatri()">
-			</form>-->
+		</div></div>
 		</fieldset>
+		<!-- ---------------------------------------------------------------------------------------------------- -->
 		<!-- <hr> -->
-			<fieldset>
+<fieldset>
 			<legend><h2>Añadir media</h2></legend>
 			<div class="divspoiler">
 			<input type="button" value="Añadir" onclick="
@@ -138,7 +133,9 @@ function mostrarForm(){
 		</div><div><div class="spoiler" style="display: none;">
 		<form name="añadir_multiteca" method="post" action="anadir.jr"> 
 			<input name="gestion" hidden="true" type="text"  value="añadir_media"/> <br>
+			Código de barras:<input type="number" name="cod_barras" id="cod_barras" value=""><br/>
 			Titulo:<input type="text" name="titulo" id="titulo" value=""><br/>
+			Autor:<input type="text" name="autor" id="autor" value=""><br/>
 			Año de edicion:<input type="text" name="añoEdicion" id="añoEdicion" value="" maxlenght="4">		
 			<br/>Tipo:<select name="selecTipo" id="selecTipo">
 					<option value="disco">Disco</option>
@@ -150,35 +147,31 @@ function mostrarForm(){
 			Numero de Canciones:<input type="text" name="numCanciones" id="numCanciones" value="" maxlenght="3">			
 			</div>
 			<div id="peli1">
-			Productora:<input type="text" name="productora" id="productora" value=""><br/>
-			Duracion:<input type="text" name="duracion" id="duracion" value="" maxlenght="3">
-			
+			Productora:<input type="text" name="productora" id="productora" value=""><br/>			
 			</div>
 			<div id="libro1">
-			Editor:<input type="text" name="editor" id="editor" value=""><br/>
+			Editorial:<input type="text" name="editor" id="editor" value=""><br/>
 			Numero de Paginas:<input type="text" name="numPaginas" id="numPaginas" value="">			
 			
 			</div>
 			<input type="submit" id="submit" value="Buscar">
 		</form>
 	</div></div>
-			<form method="POST" action="buscar.jr" onsubmit="return controlCod_barras()">
-				<!-- <input type="submit" value="Buscar" onclick="controlMatri()">-->
-			</form>
 		</fieldset>
+		<!-- ---------------------------------------------------------------------------------------------------- -->
 		<fieldset>
 			<legend><h2>Eliminar media</h2></legend>
 				<form method="POST" action="eliminar.jr" onclick="controlCod_barras()" onsubmit="return seguro()">
 					Codigo de barras:<input type="text" name="codigoBarras" id="codigo_Barras" value="" maxlength="7"/><input type="submit" name="Eliminar" value="Eliminar"/>
 				</form>
 		</fieldset>
+		<!-- ---------------------------------------------------------------------------------------------------- -->
 		<fieldset>
 			<legend><h2>Modificar media</h2></legend>
-				<!-- <form method="POST" action="modificar.jr" onsubmit="return controlMatri()"> -->
-				<!-- <form method="POST" action="modificar.jr" onclick="controlCod_barras()"> -->
-				<form method="POST" action="modificar.jr">
-					Codigo de barras:<input type="text" name="codigoBarras" id="codigo_Barras" value="" maxlength="7"/><input type="submit" name="Modificar" value="Modificar"/>
-				</form>
+			<!-- <form method="POST" action="modificar.jr" onsubmit="return controlCod_barras()"> -->
+			<form method="POST" action="modificar.jr">
+				Codigo de barras:<input type="text" name="codigoBarras" id="codigo_Barras" value="" maxlength="7"/><input type="submit" name="Modificar" value="Modificar"/>
+			</form>
 		</fieldset>
 	</body>
 </html>
