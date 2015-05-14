@@ -6,7 +6,7 @@
 	</head>
 	<body>
 <script type="text/javascript">
-function controlCod_barras(){
+/*function controlCod_barras(){
 	var cod_Barras = document.getElementById('codigo_Barras');
 	var len = cod_Barras.value.length;
 	if (len != 7) {
@@ -26,6 +26,20 @@ function controlCod_barras(){
 			return false;
 		}
 	}	
+}*/
+function controlCod_barras(){
+	var cod_Barras = document.getElementById('codigo_Barras');
+	var numeros = matricula.value.substr(0,6);
+	//if (numeros >= "0000" && numeros <= "9999"){
+	if (!isNaN(cod_barras)){
+		//window.alert("Numeros: " + numeros + " Letras: " + letras);
+		return true;
+	} else {
+		window.alert("Codigo de barras NO VÁLIDO\nTodos los caracteres deben ser numeros");
+		//history.go(-1);
+		return false;
+	}
+		
 }
 
 function seguro(){

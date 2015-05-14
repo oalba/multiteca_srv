@@ -49,4 +49,14 @@
     <servlet-name>ModificarOk</servlet-name>
     <url-pattern>/modificarok.jr</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Eliminar</display-name>
+    <servlet-name>Eliminar</servlet-name>
+    <servlet-class>com.zubiri.Multiteca.Eliminar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Eliminar</servlet-name>
+    <url-pattern>/eliminar.jr</url-pattern>
+  </servlet-mapping>
 </web-app>
