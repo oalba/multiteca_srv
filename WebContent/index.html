@@ -11,7 +11,7 @@
 	var len = cod_Barras.value.length;
 	if (len != 7) {
 	//if (len < 7 || len > 7) {
-		window.alert("Codigo de barras NO VÁLIDO\nEl codigo de barras debe contener 7 numeros");
+		window.alert("Código de barras NO VÁLIDO\nEl código de barras debe contener 7 numeros");
 		//history.go(-1);
 		return false;
 	} else {
@@ -21,18 +21,18 @@
 			//window.alert("Numeros: " + numeros + " Letras: " + letras);
 			return true;
 		} else {
-			window.alert("Codigo de barras NO VÁLIDO\nTodos los caracteres deben ser numeros");
+			window.alert("Código de barras NO VÁLIDO\nTodos los caracteres deben ser numeros");
 			//history.go(-1);
 			return false;
 		}
 	}	
 }*/
 function controlCod_barras(){
-	var cod_Barras = document.getElementById('codigo_Barras').value;
-	//var numeros = matricula.value.substr(0,6);
+	var cod_Barras = document.getElementById("codigoBarras");
+	var numeros = cod_Barras.value;
 	//if (numeros >= "0000" && numeros <= "9999"){
-	if (isNaN(cod_barras)){
-		window.alert("Codigo de barras NO VÁLIDO\nTodos los caracteres deben ser numeros");
+	if (isNaN(numeros)){
+		window.alert("Código de barras NO VÁLIDO\nTodos los caracteres deben ser numeros");
 		//history.go(-1);
 		return false;
 		
@@ -45,20 +45,15 @@ function controlCod_barras(){
 }
 
 function seguro(){
-	var cod_Barras = document.getElementById('codigo_Barras').value;
-	confirmar=confirm("¿Seguro que desea eliminar el producto con el codigo de barras: " + cod_Barras + "?"); 
-	//if (!confirm("¿Seguro que desea eliminar el producto con la cod_Barras: "+cod_Barras+"?") {
+	var cod_Barras = document.getElementById('codigoBarras').value;
+	confirmar=confirm("¿Seguro que desea eliminar el producto con el código de barras: " + cod_Barras + "?"); 
 	if (confirmar) {
 		// si pulsamos en aceptar
 		alert('El producto se eliminará.');
 		return true;
 	}else{ 
-		return false;
 		// si pulsamos en cancelar
-		//window.location.href="./index.html";
-		//alert('Eliminación cancelada.');
-		//window.open("./index.html");
-		//history.go(-1);
+		return false;
 	}			
 }
 	
@@ -98,27 +93,15 @@ function mostrarForm(){
 		<!-- <hr> -->
 		<fieldset>
 			<legend><h2>Buscar en multiteca</h2></legend>
-			<div class="divspoiler">
-			<input type="button" value="Búsqueda en multiteca" onclick="
-			if (this.parentNode.nextSibling.childNodes[0].style.display != '') { 
-				this.parentNode.nextSibling.childNodes[0].style.display = ''; 
-				this.value = 'Ocultar búsqueda'; 
-			} else { 
-				this.parentNode.nextSibling.childNodes[0].style.display = 'none'; 
-				this.value = 'Búsqueda en multiteca'; 
-			}
-		">
-		</div><div><div class="spoiler" style="display: none;">
 		<form name="buscar_multiteca" method="post" onsubmit="return controlCod_barras()" action="buscar.jr">
 			<!-- <form name="buscar_multiteca" method="post" action="buscar.jr"> -->
-			Codigo de barras:<input type="text" name="codigoBarras" id="codigo_Barras" value="" maxlength="7">
+			Código de barras:<input type="text" name="codigoBarras" id="codigoBarras" value="" maxlength="7">
 			<input type="submit" id="submit" value="Buscar">
 		</form>
-		</div></div>
 		</fieldset>
 		<!-- ---------------------------------------------------------------------------------------------------- -->
 		<!-- <hr> -->
-<fieldset>
+		<fieldset>
 			<legend><h2>Añadir media</h2></legend>
 			<div class="divspoiler">
 			<input type="button" value="Añadir" onclick="
@@ -161,8 +144,8 @@ function mostrarForm(){
 		<!-- ---------------------------------------------------------------------------------------------------- -->
 		<fieldset>
 			<legend><h2>Eliminar media</h2></legend>
-				<form method="POST" action="eliminar.jr" onclick="controlCod_barras()" onsubmit="return seguro()">
-					Codigo de barras:<input type="text" name="codigoBarras" id="codigo_Barras" value="" maxlength="7"/><input type="submit" name="Eliminar" value="Eliminar"/>
+				<form method="POST" action="eliminar.jr" onsubmit="return seguro()">
+					Código de barras:<input type="text" name="codigoBarras" id="codigoBarras" value="" maxlength="7"/><input type="submit" name="Eliminar" value="Eliminar"/>
 				</form>
 		</fieldset>
 		<!-- ---------------------------------------------------------------------------------------------------- -->
@@ -170,7 +153,7 @@ function mostrarForm(){
 			<legend><h2>Modificar media</h2></legend>
 			<!-- <form method="POST" action="modificar.jr" onsubmit="return controlCod_barras()"> -->
 			<form method="POST" action="modificar.jr">
-				Codigo de barras:<input type="text" name="codigoBarras" id="codigo_Barras" value="" maxlength="7"/><input type="submit" name="Modificar" value="Modificar"/>
+				Código de barras:<input type="text" name="codigoBarras" id="codigoBarras" value="" maxlength="7"/><input type="submit" name="Modificar" value="Modificar"/>
 			</form>
 		</fieldset>
 	</body>
