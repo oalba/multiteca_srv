@@ -73,7 +73,8 @@ public class Buscar extends HttpServlet {
 					Artista autor = new Artista(rsl.getString("obras.autor"),rsa.getInt("añoNacimiento"));
 					//Artista autor = new Artista(rsl.getString("obras.autor"),0);
 					Libro libro = new Libro(rsl.getString("obras.titulo"),autor,rsl.getInt("obras.añoEdicion"),rsl.getString("libros.editorial"),rsl.getInt("libros.nPaginas"));
-				}
+					//libro.getTitulo();
+					}
 			}
 		//} else if (st == "pelicula") {
 			Statement stmtp = cone.createStatement();

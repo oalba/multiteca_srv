@@ -125,14 +125,14 @@ function mostrarForm(){
 					<option value="pelicula">Pelicula</option>
 					<option value="libro">Libro</option>
 				</select><input type="button" id="Elegir" value="Elegir" onclick="mostrarForm()"><br/>
-			<div id="disco1">
+			<div id="disco1" hidden="true">
 			Discografica:<input type="text" name="discografica" id="discografica" value=""><br/>
 			Numero de Canciones:<input type="text" name="numCanciones" id="numCanciones" value="" maxlenght="3">			
 			</div>
-			<div id="peli1">
+			<div id="peli1" hidden="true">
 			Productora:<input type="text" name="productora" id="productora" value=""><br/>			
 			</div>
-			<div id="libro1">
+			<div id="libro1" hidden="true">
 			Editorial:<input type="text" name="editorial" id="editorial" value=""><br/>
 			Numero de Paginas:<input type="text" name="numPaginas" id="numPaginas" value="">			
 			
@@ -156,5 +156,29 @@ function mostrarForm(){
 				Código de barras:<input type="text" name="codigoBarras" id="codigoBarras" value="" maxlength="7"/><input type="submit" name="Modificar" value="Modificar"/>
 			</form>
 		</fieldset>
+		<!-- ################################################################################################### -->
+	<!-- <fieldset>
+			<legend><h2>Artistas</h2></legend>
+			<div class="divspoiler">
+			<input type="button" value="Añadir" onclick="
+			if (this.parentNode.nextSibling.childNodes[0].style.display != '') { 
+				this.parentNode.nextSibling.childNodes[0].style.display = ''; 
+				this.value = 'Ocultar'; 
+			} else { 
+				this.parentNode.nextSibling.childNodes[0].style.display = 'none'; 
+				this.value = 'Añadir'; 
+			}
+		">
+		</div><div><div class="spoiler" style="display: none;">
+		<form name="añadir_multiteca" method="post" action="anadir.jr"> 
+			aa
+			<input type="submit" id="submit" value="Añadir">
+		</form>
+	</div></div>
+	<br>
+	<form method="POST" action="eliminarA.jr" onsubmit="return seguro()">
+		Nombre:<input type="text" name="nombre" id="nombre" value="" maxlength="7"/><input type="submit" name="Eliminar" value="Eliminar"/>
+	</form>
+	</fieldset>-->
 	</body>
 </html>

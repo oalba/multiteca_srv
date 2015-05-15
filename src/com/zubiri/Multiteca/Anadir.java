@@ -50,11 +50,11 @@ public class Anadir extends HttpServlet {
 			out.print("Código de barras: "+Integer.parseInt(request.getParameter("codigoBarras"))+"<br>");
 			int codigoBarras = Integer.parseInt(request.getParameter("codigoBarras"));
 			out.print("Título: "+request.getParameter("titulo")+"<br>");
-			String titulo = request.getParameter("titulo");
+			//String titulo = request.getParameter("titulo");
 			out.print("Autor: "+request.getParameter("autor")+"<br>");
-			String autor = request.getParameter("autor");
+			//String autor = request.getParameter("autor");
 			out.print("Año de edición: "+Integer.parseInt(request.getParameter("anoEdicion"))+"<br>");
-			int anoEdicion = Integer.parseInt(request.getParameter("anoEdicion"));
+			//int anoEdicion = Integer.parseInt(request.getParameter("anoEdicion"));
 			Statement stmto = cone.createStatement();
 			String tipo = request.getParameter("tipo");
 			stmto.executeUpdate("INSERT INTO obras (cod_barras, titulo, autor, añoEdicion, tipo) VALUES ("+Integer.parseInt(request.getParameter("codigoBarras"))+",'"+request.getParameter("titulo")+"','"+request.getParameter("autor")+"',"+Integer.parseInt(request.getParameter("anoEdicion"))+",'"+request.getParameter("tipo")+"')");
