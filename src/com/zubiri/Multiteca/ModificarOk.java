@@ -59,7 +59,6 @@ public class ModificarOk extends HttpServlet {
 				+"', añoEdicion = "+Integer.parseInt(request.getParameter("anoEdicion"))
 				+", tipo = '"+request.getParameter("tipo")
 				+"' WHERE cod_barras = "+ Integer.parseInt(request.getParameter("codigoBarras")));
-		out.print("a");
 		String tipo = request.getParameter("tipo");
 		String libro = "libro";
 		String peli = "pelicula";

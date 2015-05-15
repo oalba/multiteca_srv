@@ -59,4 +59,14 @@
     <servlet-name>Eliminar</servlet-name>
     <url-pattern>/eliminar.jr</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Anadir</display-name>
+    <servlet-name>Anadir</servlet-name>
+    <servlet-class>com.zubiri.Multiteca.Anadir</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Anadir</servlet-name>
+    <url-pattern>/anadir.jr</url-pattern>
+  </servlet-mapping>
 </web-app>
