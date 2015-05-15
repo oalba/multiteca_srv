@@ -47,36 +47,32 @@ public class Anadir extends HttpServlet {
 		out.println("<html>");
 		out.println("<head><title></title></head>");
 		out.println("<body>");
-			out.print("a");
-			int cb = Integer.parseInt(request.getParameter("codigoBarras"));
-			out.print("Código de barras: " + cb + "<br>");
-			//int codigoBarras = Integer.parseInt(request.getParameter("codigoBarras"));
-			//out.print("Código de barras: "+codigoBarras+"<br>");
-			//out.print("Código de barras: "+Integer.parseInt(request.getParameter("codigoBarras"))+"<br>");
-			//int codigoBarras = Integer.parseInt(request.getParameter("codigoBarras"));
+			out.print("Código de barras: "+Integer.parseInt(request.getParameter("codigoBarras"))+"<br>");
+			int codigoBarras = Integer.parseInt(request.getParameter("codigoBarras"));
 			out.print("Título: "+request.getParameter("titulo")+"<br>");
 			String titulo = request.getParameter("titulo");
 			out.print("Autor: "+request.getParameter("autor")+"<br>");
 			String autor = request.getParameter("autor");
-			out.print("Año de edición: "+request.getParameter("añoEdicion")+"<br>");
-			//int añoEdicion = Integer.parseInt(request.getParameter("añoEdicion"));
-
-			
+			out.print("Año de edición: "+Integer.parseInt(request.getParameter("anoEdicion"))+"<br>");
+			int anoEdicion = Integer.parseInt(request.getParameter("anoEdicion"));
+			Statement stmto = cone.createStatement();
 			String tipo = request.getParameter("tipo");
+			stmto.executeUpdate("INSERT INTO obras (cod_barras, titulo, autor, añoEdicion, tipo) VALUES ("+Integer.parseInt(request.getParameter("codigoBarras"))+",'"+request.getParameter("titulo")+"','"+request.getParameter("autor")+"',"+Integer.parseInt(request.getParameter("anoEdicion"))+",'"+request.getParameter("tipo")+"')");
+
 			String libro = "libro";
 			String peli = "pelicula";
 			String disco = "disco";
 			if (tipo.equals(disco)) {
-				out.println("Tipo: Disco<br>");
-				out.print("Discografica: "+request.getParameter("discografica")+"<br>");
+				out.print("Tipo: Disco<br>");
+				out.print("Discográfica: "+request.getParameter("discografica")+"<br>");
 				String discografica = request.getParameter("discografica");
-				out.print("Numero de canciones: "+request.getParameter("numCanciones")+"<br>");
+				out.print("Numero de canciones: "+Integer.parseInt(request.getParameter("numCanciones"))+"<br>");
 				int numCanciones = Integer.parseInt(request.getParameter("numCanciones"));
 
 
 				Statement stmtd = cone.createStatement();
-				stmtd.executeQuery("INSERT INTO obras(cod_barras, titulo, autor, añoEdicion, tipo) VALUES ( '"+request.getParameter("codigoBarras")+"','"+titulo+"','"+autor+"','"+request.getParameter("añoEdicion")+"','"+tipo+"'");
-				stmtd.executeQuery("INSERT INTO discos(cod_barras, discografica, nCanciones) VALUES ('"+request.getParameter("codigoBarras")+"','"+discografica+"','"+numCanciones+"'");
+				
+				stmtd.executeUpdate("INSERT INTO discos(cod_barras, discografica, nCanciones) VALUES ("+codigoBarras+",'"+discografica+"',"+numCanciones+")");
 
 			} else if (tipo.equals(peli)){
 				out.print("Tipo: Película<br>");
@@ -84,8 +80,8 @@ public class Anadir extends HttpServlet {
 				String productora = request.getParameter("productora");
 				
 				Statement stmtp = cone.createStatement();
-				stmtp.executeQuery("INSERT INTO obras(cod_barras, titulo, autor, añoEdicion, tipo) VALUES ( '"+request.getParameter("codigoBarras")+"','"+titulo+"','"+autor+"','"+request.getParameter("añoEdicion")+"','"+tipo+"'");
-				stmtp.executeQuery("INSERT INTO peliculas(cod_barras, productora) VALUES ('"+request.getParameter("codigoBarras")+"','"+productora+"'");
+				//stmtp.executeUpdate("INSERT INTO obras(cod_barras, titulo, autor, añoEdicion, tipo) VALUES ( '"+request.getParameter("codigoBarras")+"','"+titulo+"','"+autor+"','"+request.getParameter("anoEdicion")+"','"+tipo+"'");
+				stmtp.executeUpdate("INSERT INTO peliculas(cod_barras, productora) VALUES ("+codigoBarras+",'"+productora+"')");
 				
 			} else if (tipo.equals(libro)){
 				out.print("Tipo: Libro<br>");
@@ -95,8 +91,8 @@ public class Anadir extends HttpServlet {
 				int numPaginas = Integer.parseInt(request.getParameter("numPaginas"));
 				
 				Statement stmtl = cone.createStatement();
-				stmtl.executeQuery("INSERT INTO obras(cod_barras, titulo, autor, añoEdicion, tipo) VALUES ( "+request.getParameter("codigoBarras")+",'"+titulo+"','"+autor+"',"+request.getParameter("añoEdicion")+",'"+tipo+"'");
-				stmtl.executeQuery("INSERT INTO libros(cod_barras, editorial, nPaginas) VALUES ("+request.getParameter("codigoBarras")+",'"+editorial+"',"+numPaginas);
+				//stmtl.executeUpdate("INSERT INTO obras(cod_barras, titulo, autor, añoEdicion, tipo) VALUES ( "+request.getParameter("codigoBarras")+",'"+titulo+"','"+autor+"',"+request.getParameter("anoEdicion")+",'"+tipo+"'");
+				stmtl.executeUpdate("INSERT INTO libros(cod_barras, editorial, nPaginas) VALUES ("+codigoBarras+",'"+editorial+"',"+numPaginas+")");
 			}
 			
 		out.println("Media añadida correctamente.");

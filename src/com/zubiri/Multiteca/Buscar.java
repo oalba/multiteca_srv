@@ -64,7 +64,7 @@ public class Buscar extends HttpServlet {
 				out.println("Año de edición: " + rsl.getInt("obras.añoEdicion") + "<br>");
 				out.println("Editorial: " + rsl.getString("libros.editorial") + "<br>");
 				out.println("Número de páginas: " + rsl.getInt("libros.nPaginas") + "<br>");
-				out.println("AUTOR");
+				out.println("AUTOR<br>");
 				out.println("Autor: " + rsl.getString("obras.autor") + "<br>");
 				Statement stmta = cone.createStatement();
 				ResultSet rsa = stmta.executeQuery("SELECT * FROM artistas WHERE nombre = '"+rsl.getString("obras.autor")+"'");

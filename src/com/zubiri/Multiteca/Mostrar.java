@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.zubiri.multiteca.Artista;
+import com.zubiri.multiteca.Libro;
+
 /**
  * Servlet implementation class Mostrar
  */
@@ -79,10 +82,20 @@ public class Mostrar extends HttpServlet {
 			out.println("Código de barras: " + cb + "<br>");
 			out.println("Título: " + rso.getString("titulo") + "<br>");
 				//out.println("Autor: " + rsa.getInt("añoNacimiento") + "<br>");
-			out.println("Autor: " + rso.getString("autor") + "<br>");
+			//out.println("Autor: " + rso.getString("autor") + "<br>");
 			out.println("Año de edición: " + rso.getInt("añoEdicion") + "<br>");
 			out.println("Editorial: " + rsl.getString("editorial") + "<br>");
-			out.println("Número de páginas: " + rsl.getInt("nPaginas") + "<hr>");
+			out.println("Número de páginas: " + rsl.getInt("nPaginas") + "<br>");
+			out.println("AUTOR<br>");
+			out.println("Autor: " + rso.getString("obras.autor") + "<br>");
+			Statement stmta = cone.createStatement();
+			ResultSet rsa = stmta.executeQuery("SELECT * FROM artistas WHERE nombre = '"+rso.getString("obras.autor")+"'");
+			while (rsa.next()) {
+				out.println("Año de nacimiento: "+rsa.getInt("añoNacimiento")+"<hr>");
+				//Artista autor = new Artista(rso.getString("obras.autor"),rsa.getInt("añoNacimiento"));
+				//Artista autor = new Artista(rsl.getString("obras.autor"),0);
+				//Libro libro = new Libro(rsl.getString("obras.titulo"),autor,rsl.getInt("obras.añoEdicion"),rsl.getString("libros.editorial"),rsl.getInt("libros.nPaginas"));
+			}
 			}
 			
 			//out.println("<h3>Películas</h3>");
@@ -97,9 +110,19 @@ public class Mostrar extends HttpServlet {
 			out.println("Código de barras: " + cb + "<br>");
 			out.println("Título: " + rso.getString("titulo") + "<br>");
 				//out.println("Autor: " + rsa.getInt("añoNacimiento") + "<br>");
-			out.println("Autor: " + rso.getString("autor") + "<br>");
+			//out.println("Autor: " + rso.getString("autor") + "<br>");
 			out.println("Año de edición: " + rso.getInt("añoEdicion") + "<br>");
-			out.println("Productora: " + rsp.getString("productora") + "<hr>");
+			out.println("Productora: " + rsp.getString("productora") + "<br>");
+			out.println("AUTOR<br>");
+			out.println("Autor: " + rso.getString("obras.autor") + "<br>");
+			Statement stmta = cone.createStatement();
+			ResultSet rsa = stmta.executeQuery("SELECT * FROM artistas WHERE nombre = '"+rso.getString("obras.autor")+"'");
+			while (rsa.next()) {
+				out.println("Año de nacimiento: "+rsa.getInt("añoNacimiento")+"<hr>");
+				//Artista autor = new Artista(rso.getString("obras.autor"),rsa.getInt("añoNacimiento"));
+				//Artista autor = new Artista(rsl.getString("obras.autor"),0);
+				//Libro libro = new Libro(rsl.getString("obras.titulo"),autor,rsl.getInt("obras.añoEdicion"),rsl.getString("libros.editorial"),rsl.getInt("libros.nPaginas"));
+			}
 			}
 			
 			//out.println("<h3>Discos</h3>");
@@ -114,9 +137,19 @@ public class Mostrar extends HttpServlet {
 			out.println("Código de barras: " + cb + "<br>");
 			out.println("Título: " + rso.getString("titulo") + "<br>");
 				//out.println("Autor: " + rsa.getInt("añoNacimiento") + "<br>");
-			out.println("Autor: " + rso.getString("autor") + "<br>");
+			//out.println("Autor: " + rso.getString("autor") + "<br>");
 			out.println("Discográfica: " + rsd.getString("discografica") + "<br>");
-			out.println("Número de canciones: " + rsd.getInt("nCanciones") + "<hr>");
+			out.println("Número de canciones: " + rsd.getInt("nCanciones") + "<br>");
+			out.println("AUTOR<br>");
+			out.println("Autor: " + rso.getString("obras.autor") + "<br>");
+			Statement stmta = cone.createStatement();
+			ResultSet rsa = stmta.executeQuery("SELECT * FROM artistas WHERE nombre = '"+rso.getString("obras.autor")+"'");
+			while (rsa.next()) {
+				out.println("Año de nacimiento: "+rsa.getInt("añoNacimiento")+"<hr>");
+				//Artista autor = new Artista(rso.getString("obras.autor"),rsa.getInt("añoNacimiento"));
+				//Artista autor = new Artista(rsl.getString("obras.autor"),0);
+				//Libro libro = new Libro(rsl.getString("obras.titulo"),autor,rsl.getInt("obras.añoEdicion"),rsl.getString("libros.editorial"),rsl.getInt("libros.nPaginas"));
+			}
 			}
 			//}
 	    }

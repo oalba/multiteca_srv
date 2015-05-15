@@ -59,7 +59,7 @@ function seguro(){
 	
 function mostrarForm(){
 	
-		var seleccion = document.getElementById("selecTipo").value;
+		var seleccion = document.getElementById("tipo").value;
 	
 		if ( seleccion == "disco"){
 		
@@ -115,12 +115,12 @@ function mostrarForm(){
 		">
 		</div><div><div class="spoiler" style="display: none;">
 		<form name="añadir_multiteca" method="post" action="anadir.jr"> 
-			<input name="gestion" hidden="true" type="text"  value="añadir_media"/> <br>
-			Código de barras:<input type="number" name="cod_barras" id="cod_barras" value=""><br/>
+			<input name="gestion" hidden="true" type="text"  value="anadir_media"/> <br>
+			Código de barras:<input type="number" name="codigoBarras" id="codigoBarras" value=""><br/>
 			Titulo:<input type="text" name="titulo" id="titulo" value=""><br/>
 			Autor:<input type="text" name="autor" id="autor" value=""><br/>
-			Año de edicion:<input type="text" name="añoEdicion" id="añoEdicion" value="" maxlenght="4">		
-			<br/>Tipo:<select name="selecTipo" id="selecTipo">
+			Año de edicion:<input type="text" name="anoEdicion" id="anoEdicion" value="" maxlenght="4">		
+			<br/>Tipo:<select name="tipo" id="tipo">
 					<option value="disco">Disco</option>
 					<option value="pelicula">Pelicula</option>
 					<option value="libro">Libro</option>
@@ -133,11 +133,11 @@ function mostrarForm(){
 			Productora:<input type="text" name="productora" id="productora" value=""><br/>			
 			</div>
 			<div id="libro1">
-			Editorial:<input type="text" name="editor" id="editor" value=""><br/>
+			Editorial:<input type="text" name="editorial" id="editorial" value=""><br/>
 			Numero de Paginas:<input type="text" name="numPaginas" id="numPaginas" value="">			
 			
 			</div>
-			<input type="submit" id="submit" value="Buscar">
+			<input type="submit" id="submit" value="Añadir">
 		</form>
 	</div></div>
 		</fieldset>
