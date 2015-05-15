@@ -56,6 +56,19 @@ function seguro(){
 		return false;
 	}			
 }
+
+function seguroa(){
+	var nombre = document.getElementById('nombre').value;
+	confirmar=confirm("¿Seguro que desea eliminar el artista llamado: " + nombre + "?\n¡Esto implica la eliminación de todas sus obras!"); 
+	if (confirmar) {
+		// si pulsamos en aceptar
+		alert('El artista se eliminará.');
+		return true;
+	}else{ 
+		// si pulsamos en cancelar
+		return false;
+	}			
+}
 	
 function mostrarForm(){
 	
@@ -170,14 +183,19 @@ function mostrarForm(){
 			}
 		">
 		</div><div><div class="spoiler" style="display: none;">
-		<form name="añadir_multiteca" method="post" action="anadir.jr"> 
-			aa
+		<form name="añadir_artista" method="post" action="anadirA.jr"> 
+			Nombre:<input type="text" name="titulo" id="titulo" value=""><br/>
+			Año de nacimiento:<input type="date" name="anoNacimiento" id="anoNacimiento"><br/>
 			<input type="submit" id="submit" value="Añadir">
 		</form>
 	</div></div>
-	<br>
-	<form method="POST" action="eliminarA.jr" onsubmit="return seguro()">
+	<hr>
+	<form method="POST" action="eliminarA.jr" onsubmit="return seguroa()">
 		Nombre:<input type="text" name="nombre" id="nombre" value="" maxlength="7"/><input type="submit" name="Eliminar" value="Eliminar"/>
+	</form>
+	<hr>
+	<form method="POST" action="mostrarA.jr">
+		<input type="submit" value="Mostrar">
 	</form>
 	</fieldset>-->
 	</body>
