@@ -69,34 +69,4 @@
     <servlet-name>Anadir</servlet-name>
     <url-pattern>/anadir.jr</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>anadirA</display-name>
-    <servlet-name>anadirA</servlet-name>
-    <servlet-class>com.zubiri.Multiteca.AnadirA</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>anadirA</servlet-name>
-    <url-pattern>/anadirA.jr</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>EliminarA</display-name>
-    <servlet-name>EliminarA</servlet-name>
-    <servlet-class>com.zubiri.Multiteca.EliminarA</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EliminarA</servlet-name>
-    <url-pattern>/eliminarA.jr</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>MostrarA</display-name>
-    <servlet-name>MostrarA</servlet-name>
-    <servlet-class>com.zubiri.Multiteca.MostrarA</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MostrarA</servlet-name>
-    <url-pattern>/mostrarA.jr</url-pattern>
-  </servlet-mapping>
 </web-app>
