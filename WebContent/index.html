@@ -58,7 +58,7 @@ function seguro(){
 }
 
 function seguroa(){
-	var nombre = document.getElementById('nombre').value;
+	var nombre = document.getElementById('nombreb').value;
 	confirmar=confirm("¿Seguro que desea eliminar el artista llamado: " + nombre + "?\n¡Esto implica la eliminación de todas sus obras!"); 
 	if (confirmar) {
 		// si pulsamos en aceptar
@@ -191,7 +191,7 @@ function mostrarForm(){
 	</div></div>
 	<hr>
 	<form method="POST" action="eliminarA.jr" onsubmit="return seguroa()">
-		Nombre:<input type="text" name="nombre" id="nombre" value="" maxlength="7"/><input type="submit" name="Eliminar" value="Eliminar"/>
+		Nombre:<input type="text" name="nombreb" id="nombreb" value="" maxlength="7"/><input type="submit" name="Eliminar" value="Eliminar"/>
 	</form>
 	<hr>
 	<form method="POST" action="mostrarA.jr">

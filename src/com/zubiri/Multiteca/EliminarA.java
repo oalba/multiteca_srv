@@ -48,7 +48,7 @@ public class EliminarA extends HttpServlet {
 			
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		String nombre = request.getParameter("nombre");
+		String nombre = request.getParameter("nombreb");
 	    ResultSet rs = stmt.executeQuery("SELECT * FROM artistas WHERE nombre = '"+nombre+"'");
 	
 		out.println("<html>");
